@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LiveBetter</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -17,16 +17,14 @@
     body {
       background-color: #ffffff;
       color: #1a1a1a;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      overflow: auto;
     }
 
     header {
       padding: 20px 40px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       background-color: #ffffff;
       border-bottom: 1px solid #e0e0e0;
     }
@@ -38,12 +36,18 @@
       cursor: pointer;
     }
 
-    .hero, .chat-section, .benefits {
+    .menu {
+      font-size: 1rem;
+      color: #3dbb74;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .hero, .benefits, .chat-section, .learn-section {
       transition: opacity 0.5s ease;
     }
 
     .hero {
-      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -77,6 +81,48 @@
 
     .hero button:hover {
       background-color: #32a263;
+    }
+
+    .benefits {
+      background-color: #f9fdfb;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .benefits h2 {
+      font-size: 2.2rem;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+    }
+
+    .benefits p {
+      font-size: 1.1rem;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+    }
+
+    .benefit-list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .benefit-item {
+      background-color: white;
+      border: 1px solid #d8f3e0;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: left;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .benefit-item h3 {
+      color: #3dbb74;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
     }
 
     .chat-section {
@@ -147,54 +193,73 @@
       cursor: pointer;
     }
 
-    .benefits {
-      background-color: #f9fdfb;
-      padding: 80px 20px;
-      text-align: center;
+    /* LEARN SECTION */
+    .learn-section {
+      display: none;
+      flex-direction: row;
+      height: 100vh;
     }
 
-    .benefits h2 {
-      font-size: 2.2rem;
-      color: #1a1a1a;
+    .sidebar {
+      width: 240px;
+      background-color: #f9fdfb;
+      border-right: 1px solid #e0e0e0;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      color: #3dbb74;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar li {
+      margin-bottom: 12px;
+      cursor: pointer;
+      color: #333;
+      transition: color 0.3s;
+    }
+
+    .sidebar li:hover {
+      color: #3dbb74;
+    }
+
+    .learn-content {
+      flex: 1;
+      padding: 40px;
+      overflow-y: auto;
+    }
+
+    .learn-content h1 {
+      font-size: 2rem;
       margin-bottom: 20px;
     }
 
-    .benefits p {
-      font-size: 1.1rem;
-      color: #444;
-      max-width: 700px;
-      margin: 0 auto 40px auto;
-    }
-
-    .benefit-list {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .benefit-item {
-      background-color: white;
-      border: 1px solid #d8f3e0;
-      border-radius: 12px;
-      padding: 24px;
-      text-align: left;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-    }
-
-    .benefit-item h3 {
+    .learn-content h2 {
+      font-size: 1.4rem;
+      margin-top: 32px;
       color: #3dbb74;
-      margin-bottom: 10px;
-      font-size: 1.2rem;
     }
 
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 2rem;
+    .learn-content p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-top: 10px;
+      max-width: 800px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
       }
-      .hero p {
-        font-size: 1rem;
+
+      .learn-content {
+        padding: 20px;
       }
     }
   </style>
@@ -202,6 +267,7 @@
 <body>
   <header>
     <div class="logo" onclick="goHome()">LiveBetter</div>
+    <div class="menu" onclick="showLearn()">Learn</div>
   </header>
 
   <section class="hero" id="hero">
@@ -245,19 +311,50 @@
     </div>
   </section>
 
+  <section class="learn-section" id="learnSection">
+    <nav class="sidebar">
+      <h2>Explore</h2>
+      <ul>
+        <li onclick="scrollToSection('nutrition')">Nutrition</li>
+        <li onclick="scrollToSection('exercise')">Exercise</li>
+        <li onclick="scrollToSection('sleep')">Sleep</li>
+        <li onclick="scrollToSection('mental')">Mental Well-being</li>
+        <li onclick="scrollToSection('habits')">Healthy Habits</li>
+        <li onclick="scrollToSection('sources')">Trusted Sources</li>
+      </ul>
+    </nav>
+    <main class="learn-content">
+      <h1>LiveBetter Guide to a Healthier Life</h1>
+
+      <section id="nutrition"><h2>Nutrition</h2><p>A balanced diet includes fruits, vegetables, whole grains, lean proteins, and healthy fats. Reducing processed foods, added sugars, and excessive salt intake lowers the risk of chronic diseases and supports energy and mood.</p></section>
+      <section id="exercise"><h2>Exercise</h2><p>Regular physical activity improves cardiovascular health, strengthens muscles, and enhances mental well-being. Aim for at least 150 minutes of moderate aerobic activity per week, and include strength training twice weekly.</p></section>
+      <section id="sleep"><h2>Sleep</h2><p>Sleep is essential for recovery and cognitive performance. Adults should aim for 7–9 hours per night. Consistent sleep schedules, a quiet environment, and limited screen time before bed help improve sleep quality.</p></section>
+      <section id="mental"><h2>Mental Well-being</h2><p>Managing stress through mindfulness, social connection, and physical activity contributes to overall well-being. Practices like meditation, journaling, or seeking support when needed are valuable for emotional health.</p></section>
+      <section id="habits"><h2>Healthy Habits</h2><p>Staying hydrated, avoiding smoking and excessive alcohol, and scheduling regular health check-ups are key practices. Building routines around these principles supports a sustainable, healthy lifestyle over time.</p></section>
+      <section id="sources"><h2>Trusted Sources</h2><p>Our guidance is based on recommendations from organizations like the World Health Organization (WHO), MedlinePlus (U.S. National Library of Medicine), and the National Institute of Health (NIH).</p></section>
+    </main>
+  </section>
+
   <script>
     function startChat() {
       document.getElementById("hero").style.display = "none";
       document.getElementById("benefits").style.display = "none";
       document.getElementById("chatSection").style.display = "flex";
-      document.body.style.overflow = "hidden";
+      document.getElementById("learnSection").style.display = "none";
+    }
+
+    function showLearn() {
+      document.getElementById("hero").style.display = "none";
+      document.getElementById("benefits").style.display = "none";
+      document.getElementById("chatSection").style.display = "none";
+      document.getElementById("learnSection").style.display = "flex";
     }
 
     function goHome() {
       document.getElementById("hero").style.display = "flex";
       document.getElementById("benefits").style.display = "block";
       document.getElementById("chatSection").style.display = "none";
-      document.body.style.overflow = "auto";
+      document.getElementById("learnSection").style.display = "none";
     }
 
     function sendMessage(event) {
@@ -275,6 +372,13 @@
 
       input.value = "";
       messages.scrollTop = messages.scrollHeight;
+    }
+
+    function scrollToSection(id) {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   </script>
 </body>
