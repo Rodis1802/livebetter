@@ -20,10 +20,8 @@
     }
 
     header {
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding: 20px;
+      text-align: center;
       background-color: #ffffff;
       border-bottom: 1px solid #e0e0e0;
     }
@@ -34,18 +32,17 @@
       color: #3dbb74;
     }
 
-    .hero, .chat-section {
+    .hero, .chat-section, .benefits {
+      transition: opacity 0.5s ease;
+    }
+
+    .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 100px 20px 40px;
       text-align: center;
-      transition: opacity 0.5s ease;
-    }
-
-    .chat-section {
-      display: none;
     }
 
     .hero h1 {
@@ -75,18 +72,17 @@
       background-color: #32a263;
     }
 
-    .chat-box {
-      width: 100%;
-      max-width: 700px;
-      height: 500px;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
-      padding: 20px;
-      background-color: #ffffff;
+    .chat-section {
+      display: none;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .chat-container {
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      height: 100%;
+      padding: 20px;
     }
 
     .messages {
@@ -94,16 +90,16 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      padding-right: 10px;
+      gap: 12px;
+      padding: 10px 0;
     }
 
     .message {
+      max-width: 70%;
       padding: 12px 16px;
-      border-radius: 16px;
-      max-width: 75%;
+      border-radius: 18px;
       font-size: 1rem;
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     .message.bot {
@@ -120,23 +116,26 @@
 
     .chat-input {
       display: flex;
+      gap: 10px;
       margin-top: 20px;
-      border-top: 1px solid #eee;
     }
 
     .chat-input input {
       flex: 1;
-      padding: 16px;
-      border: none;
+      padding: 14px 16px;
+      border: 1px solid #ccc;
+      border-radius: 24px;
       font-size: 1rem;
       outline: none;
     }
 
     .chat-input button {
-      padding: 0 24px;
       background-color: #3dbb74;
       color: white;
       border: none;
+      padding: 0 24px;
+      font-size: 1rem;
+      border-radius: 24px;
       cursor: pointer;
     }
 
@@ -203,23 +202,7 @@
     <button onclick="startChat()">Chat with LiveBetter</button>
   </section>
 
-  <section class="chat-section" id="chatSection">
-    <div class="chat-box">
-      <div class="messages" id="chatMessages">
-        <div class="message bot">
-          Hi! I'm LiveBetter — your personal guide in nutrition, fitness, and mental wellness.
-          I'm here to help you build a healthier life, one smart step at a time.
-          What would you like to talk about today?
-        </div>
-      </div>
-      <form class="chat-input" onsubmit="sendMessage(event)">
-        <input type="text" id="chatInput" placeholder="Type your message..." required />
-        <button type="submit">Send</button>
-      </form>
-    </div>
-  </section>
-
-  <section class="benefits">
+  <section class="benefits" id="benefits">
     <h2>Why LiveBetter?</h2>
     <p>Because taking care of your health shouldn't be complicated. LiveBetter makes it easy, reliable, and personal.</p>
     <div class="benefit-list">
@@ -238,9 +221,26 @@
     </div>
   </section>
 
+  <section class="chat-section" id="chatSection">
+    <div class="chat-container">
+      <div class="messages" id="chatMessages">
+        <div class="message bot">
+          Hi! I'm LiveBetter — your personal guide in nutrition, fitness, and mental wellness.
+          I'm here to help you build a healthier life, one smart step at a time.
+          What would you like to talk about today?
+        </div>
+      </div>
+      <form class="chat-input" onsubmit="sendMessage(event)">
+        <input type="text" id="chatInput" placeholder="Type your message..." required />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
   <script>
     function startChat() {
       document.getElementById("hero").style.display = "none";
+      document.getElementById("benefits").style.display = "none";
       document.getElementById("chatSection").style.display = "flex";
     }
 
@@ -252,10 +252,10 @@
 
       const messages = document.getElementById("chatMessages");
 
-      const userBubble = document.createElement("div");
-      userBubble.className = "message user";
-      userBubble.textContent = text;
-      messages.appendChild(userBubble);
+      const userMsg = document.createElement("div");
+      userMsg.className = "message user";
+      userMsg.textContent = text;
+      messages.appendChild(userMsg);
 
       input.value = "";
       messages.scrollTop = messages.scrollHeight;
