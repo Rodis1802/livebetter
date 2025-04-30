@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LiveBetter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #1a1a1a;
+    }
+
+    header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #3dbb74;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+
+    .hero button {
+      background-color: #3dbb74;
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero button:hover {
+      background-color: #32a263;
+    }
+
+    .benefits {
+      background-color: #f9fdfb;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .benefits h2 {
+      font-size: 2.2rem;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+    }
+
+    .benefits p {
+      font-size: 1.1rem;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+    }
+
+    .benefit-list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .benefit-item {
+      background-color: white;
+      border: 1px solid #d8f3e0;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: left;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .benefit-item h3 {
+      color: #3dbb74;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">LiveBetter</div>
+  </header>
+
+  <section class="hero">
+    <h1>Live Smarter. LiveBetter.</h1>
+    <p>Your AI-powered guide to a healthier, smarter lifestyle.</p>
+    <button>Join the Waitlist</button>
+  </section>
+
+  <section class="benefits">
+    <h2>Why LiveBetter?</h2>
+    <p>Because taking care of your health shouldn't be complicated. LiveBetter makes it easy, reliable, and personal.</p>
+    <div class="benefit-list">
+      <div class="benefit-item">
+        <h3>🌿 Improve your health, every day</h3>
+        <p>Get simple, science-backed advice tailored to your lifestyle so you can make better choices effortlessly.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>⚡ Save time, skip the noise</h3>
+        <p>No more Googling for hours. Ask and get clear answers from an AI trained with trusted health sources.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>💡 Learn to care for yourself</h3>
+        <p>Understand how your body works, what it needs, and how to build long-term healthy habits.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
