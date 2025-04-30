@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LiveBetter - Learn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1a1a1a;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 240px;
+      background-color: #f9fdfb;
+      border-right: 1px solid #e0e0e0;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      color: #3dbb74;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar li {
+      margin-bottom: 12px;
+      cursor: pointer;
+      color: #333;
+      transition: color 0.3s;
+    }
+
+    .sidebar li:hover {
+      color: #3dbb74;
+    }
+
+    .content {
+      flex: 1;
+      padding: 40px;
+      overflow-y: auto;
+    }
+
+    .content h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .content h2 {
+      font-size: 1.4rem;
+      margin-top: 32px;
+      color: #3dbb74;
+    }
+
+    .content p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-top: 10px;
+      max-width: 800px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+      .content {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="sidebar">
+    <h2>Explore</h2>
+    <ul>
+      <li onclick="scrollToSection('nutrition')">Nutrition</li>
+      <li onclick="scrollToSection('exercise')">Exercise</li>
+      <li onclick="scrollToSection('sleep')">Sleep</li>
+      <li onclick="scrollToSection('mental')">Mental Well-being</li>
+      <li onclick="scrollToSection('habits')">Healthy Habits</li>
+      <li onclick="scrollToSection('sources')">Trusted Sources</li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <h1>LiveBetter Guide to a Healthier Life</h1>
+
+    <section id="nutrition">
+      <h2>Nutrition</h2>
+      <p>A balanced diet includes fruits, vegetables, whole grains, lean proteins, and healthy fats. Reducing processed foods, added sugars, and excessive salt intake lowers the risk of chronic diseases and supports energy and mood.</p>
+    </section>
+
+    <section id="exercise">
+      <h2>Exercise</h2>
+      <p>Regular physical activity improves cardiovascular health, strengthens muscles, and enhances mental well-being. Aim for at least 150 minutes of moderate aerobic activity per week, and include strength training twice weekly.</p>
+    </section>
+
+    <section id="sleep">
+      <h2>Sleep</h2>
+      <p>Sleep is essential for recovery and cognitive performance. Adults should aim for 7–9 hours per night. Consistent sleep schedules, a quiet environment, and limited screen time before bed help improve sleep quality.</p>
+    </section>
+
+    <section id="mental">
+      <h2>Mental Well-being</h2>
+      <p>Managing stress through mindfulness, social connection, and physical activity contributes to overall well-being. Practices like meditation, journaling, or seeking support when needed are valuable for emotional health.</p>
+    </section>
+
+    <section id="habits">
+      <h2>Healthy Habits</h2>
+      <p>Staying hydrated, avoiding smoking and excessive alcohol, and scheduling regular health check-ups are key practices. Building routines around these principles supports a sustainable, healthy lifestyle over time.</p>
+    </section>
+
+    <section id="sources">
+      <h2>Trusted Sources</h2>
+      <p>Our guidance is based on recommendations from organizations like the World Health Organization (WHO), MedlinePlus (U.S. National Library of Medicine), and the National Institute of Health (NIH).</p>
+    </section>
+  </main>
+
+  <script>
+    function scrollToSection(id) {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
+</body>
+</html>
