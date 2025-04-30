@@ -17,11 +17,14 @@
     body {
       background-color: #ffffff;
       color: #1a1a1a;
+      overflow: hidden;
     }
 
     header {
-      padding: 20px;
-      text-align: center;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       background-color: #ffffff;
       border-bottom: 1px solid #e0e0e0;
     }
@@ -30,6 +33,7 @@
       font-size: 1.5rem;
       font-weight: 600;
       color: #3dbb74;
+      cursor: pointer;
     }
 
     .hero, .chat-section, .benefits {
@@ -78,11 +82,34 @@
       height: 100vh;
     }
 
+    .chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 20px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .chat-header .back-arrow {
+      position: absolute;
+      left: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #3dbb74;
+    }
+
+    .chat-header .chat-logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #3dbb74;
+      cursor: pointer;
+    }
+
     .chat-container {
       display: flex;
       flex-direction: column;
-      height: 100%;
-      padding: 20px;
+      height: calc(100vh - 70px);
     }
 
     .messages {
@@ -91,7 +118,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      padding: 10px 0;
+      padding: 20px;
     }
 
     .message {
@@ -117,7 +144,9 @@
     .chat-input {
       display: flex;
       gap: 10px;
-      margin-top: 20px;
+      padding: 16px 20px;
+      border-top: 1px solid #eee;
+      background-color: #ffffff;
     }
 
     .chat-input input {
@@ -193,7 +222,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">LiveBetter</div>
+    <div class="logo" onclick="goHome()">LiveBetter</div>
   </header>
 
   <section class="hero" id="hero">
@@ -222,6 +251,10 @@
   </section>
 
   <section class="chat-section" id="chatSection">
+    <div class="chat-header">
+      <div class="back-arrow" onclick="goHome()">←</div>
+      <div class="chat-logo" onclick="goHome()">LiveBetter</div>
+    </div>
     <div class="chat-container">
       <div class="messages" id="chatMessages">
         <div class="message bot">
@@ -242,6 +275,14 @@
       document.getElementById("hero").style.display = "none";
       document.getElementById("benefits").style.display = "none";
       document.getElementById("chatSection").style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+
+    function goHome() {
+      document.getElementById("hero").style.display = "flex";
+      document.getElementById("benefits").style.display = "block";
+      document.getElementById("chatSection").style.display = "none";
+      document.body.style.overflow = "auto";
     }
 
     function sendMessage(event) {
