@@ -39,7 +39,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 100px 20px;
+      padding: 100px 20px 40px;
       text-align: center;
     }
 
@@ -68,6 +68,33 @@
 
     .hero button:hover {
       background-color: #32a263;
+    }
+
+    .waitlist-form {
+      display: none;
+      margin-top: 30px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .waitlist-form input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .waitlist-form button {
+      background-color: #3dbb74;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
     }
 
     .benefits {
@@ -130,7 +157,13 @@
   <section class="hero">
     <h1>Live Smarter. LiveBetter.</h1>
     <p>Your AI-powered guide to a healthier, smarter lifestyle.</p>
-    <button>Join the Waitlist</button>
+    <button onclick="document.querySelector('.waitlist-form').style.display='block'">Join the Waitlist</button>
+
+    <form class="waitlist-form" action="https://formspree.io/f/xnndjlpe" method="POST">
+      <input type="text" name="name" placeholder="Your name (optional)" />
+      <input type="email" name="email" placeholder="Your email" required />
+      <button type="submit">Submit</button>
+    </form>
   </section>
 
   <section class="benefits">
