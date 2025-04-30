@@ -3,8 +3,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LiveBetter Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LiveBetter</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -17,20 +17,50 @@
     body {
       background-color: #ffffff;
       color: #1a1a1a;
+    }
+
+    header {
+      padding: 20px 40px;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      padding: 60px 20px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e0e0e0;
     }
 
     .logo {
       font-size: 1.5rem;
       font-weight: 600;
       color: #3dbb74;
+    }
+
+    .hero, .chat-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px 40px;
+      text-align: center;
+      transition: opacity 0.5s ease;
+    }
+
+    .chat-section {
+      display: none;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 600px;
       margin-bottom: 40px;
     }
 
-    .start-chat-btn {
+    .hero button {
       background-color: #3dbb74;
       color: white;
       border: none;
@@ -41,30 +71,31 @@
       transition: background-color 0.3s ease;
     }
 
-    .start-chat-btn:hover {
+    .hero button:hover {
       background-color: #32a263;
     }
 
-    .chat-container {
-      display: none;
-      flex-direction: column;
+    .chat-box {
       width: 100%;
-      max-width: 600px;
-      margin-top: 40px;
+      max-width: 700px;
+      height: 500px;
       border: 1px solid #e0e0e0;
       border-radius: 12px;
+      padding: 20px;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
-    .chat-box {
-      height: 400px;
+    .messages {
+      flex: 1;
       overflow-y: auto;
-      background-color: #ffffff;
-      padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
+      padding-right: 10px;
     }
 
     .message {
@@ -72,11 +103,13 @@
       border-radius: 16px;
       max-width: 75%;
       font-size: 1rem;
+      line-height: 1.4;
     }
 
     .message.bot {
       background-color: #e6f5ec;
       align-self: flex-start;
+      color: #1a1a1a;
     }
 
     .message.user {
@@ -87,6 +120,7 @@
 
     .chat-input {
       display: flex;
+      margin-top: 20px;
       border-top: 1px solid #eee;
     }
 
@@ -95,6 +129,7 @@
       padding: 16px;
       border: none;
       font-size: 1rem;
+      outline: none;
     }
 
     .chat-input button {
@@ -104,47 +139,126 @@
       border: none;
       cursor: pointer;
     }
+
+    .benefits {
+      background-color: #f9fdfb;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .benefits h2 {
+      font-size: 2.2rem;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+    }
+
+    .benefits p {
+      font-size: 1.1rem;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+    }
+
+    .benefit-list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .benefit-item {
+      background-color: white;
+      border: 1px solid #d8f3e0;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: left;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .benefit-item h3 {
+      color: #3dbb74;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="logo">LiveBetter</div>
-  <button class="start-chat-btn" onclick="startChat()">Chat with LiveBetter</button>
+  <header>
+    <div class="logo">LiveBetter</div>
+  </header>
 
-  <div class="chat-container" id="chat-container">
-    <div class="chat-box" id="chat-box">
-      <div class="message bot">
-        Hi! I'm LiveBetter — your personal guide in nutrition, fitness, and mental wellness.
-        I'm here to help you build a healthier life, one smart step at a time.
-        What would you like to talk about today?
+  <section class="hero" id="hero">
+    <h1>Live Smarter. LiveBetter.</h1>
+    <p>Your AI-powered guide to a healthier, smarter lifestyle.</p>
+    <button onclick="startChat()">Chat with LiveBetter</button>
+  </section>
+
+  <section class="chat-section" id="chatSection">
+    <div class="chat-box">
+      <div class="messages" id="chatMessages">
+        <div class="message bot">
+          Hi! I'm LiveBetter — your personal guide in nutrition, fitness, and mental wellness.
+          I'm here to help you build a healthier life, one smart step at a time.
+          What would you like to talk about today?
+        </div>
+      </div>
+      <form class="chat-input" onsubmit="sendMessage(event)">
+        <input type="text" id="chatInput" placeholder="Type your message..." required />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="benefits">
+    <h2>Why LiveBetter?</h2>
+    <p>Because taking care of your health shouldn't be complicated. LiveBetter makes it easy, reliable, and personal.</p>
+    <div class="benefit-list">
+      <div class="benefit-item">
+        <h3>🌿 Improve your health, every day</h3>
+        <p>Get simple, science-backed advice tailored to your lifestyle so you can make better choices effortlessly.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>⚡ Save time, skip the noise</h3>
+        <p>No more Googling for hours. Ask and get clear answers from an AI trained with trusted health sources.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>💡 Learn to care for yourself</h3>
+        <p>Understand how your body works, what it needs, and how to build long-term healthy habits.</p>
       </div>
     </div>
-    <form class="chat-input" onsubmit="handleUserMessage(event)">
-      <input type="text" id="user-input" placeholder="Type your message..." required autocomplete="off"/>
-      <button type="submit">Send</button>
-    </form>
-  </div>
+  </section>
 
   <script>
     function startChat() {
-      document.querySelector(".start-chat-btn").style.display = "none";
-      document.getElementById("chat-container").style.display = "flex";
+      document.getElementById("hero").style.display = "none";
+      document.getElementById("chatSection").style.display = "flex";
     }
 
-    function handleUserMessage(event) {
+    function sendMessage(event) {
       event.preventDefault();
-      const input = document.getElementById("user-input");
+      const input = document.getElementById("chatInput");
       const text = input.value.trim();
-      if (text !== "") {
-        const chatBox = document.getElementById("chat-box");
+      if (!text) return;
 
-        const userMsg = document.createElement("div");
-        userMsg.className = "message user";
-        userMsg.textContent = text;
-        chatBox.appendChild(userMsg);
+      const messages = document.getElementById("chatMessages");
 
-        input.value = "";
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }
+      const userBubble = document.createElement("div");
+      userBubble.className = "message user";
+      userBubble.textContent = text;
+      messages.appendChild(userBubble);
+
+      input.value = "";
+      messages.scrollTop = messages.scrollHeight;
     }
   </script>
 </body>
