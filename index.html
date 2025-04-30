@@ -85,21 +85,12 @@
     .chat-header {
       display: flex;
       align-items: center;
-      justify-content: center;
-      position: relative;
-      padding: 20px;
+      justify-content: space-between;
+      padding: 20px 40px;
       border-bottom: 1px solid #e0e0e0;
     }
 
-    .chat-header .back-arrow {
-      position: absolute;
-      left: 20px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #3dbb74;
-    }
-
-    .chat-header .chat-logo {
+    .chat-logo {
       font-size: 1.5rem;
       font-weight: 600;
       color: #3dbb74;
@@ -252,7 +243,6 @@
 
   <section class="chat-section" id="chatSection">
     <div class="chat-header">
-      <div class="back-arrow" onclick="goHome()">←</div>
       <div class="chat-logo" onclick="goHome()">LiveBetter</div>
     </div>
     <div class="chat-container">
